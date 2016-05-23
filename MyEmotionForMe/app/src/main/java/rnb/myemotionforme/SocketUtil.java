@@ -1,4 +1,4 @@
-package rnb.myemotionforme.Page;
+package rnb.myemotionforme;
 
 import android.util.Log;
 

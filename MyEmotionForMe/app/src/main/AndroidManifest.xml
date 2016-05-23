@@ -2,19 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="rnb.myemotionforme">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/myme_icon"
         android:label="My.Me"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".Events.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Login"/>
+        <activity android:name=".Page.SignUp"/>
+        <activity android:name=".Page.MyPage"/>
+        <activity android:name=".Page.Menu"/>
+
     </application>
 
 </manifest>

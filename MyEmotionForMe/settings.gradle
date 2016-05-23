@@ -1,1 +1,3 @@
-include ':app'
+include ':app', ':okhttp-3.2.0_', ':org.apache.httpcomponents.httpclient_4.5.2_'
+project(':okhttp-3.2.0_').projectDir = new File('okhttp-3.2.0')
+project(':org.apache.httpcomponents.httpclient_4.5.2_').projectDir = new File('org.apache.httpcomponents.httpclient_4.5.2')

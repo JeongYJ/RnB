@@ -2,38 +2,49 @@ package rnb.myemotionforme;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import rnb.myemotionforme.Events.*;
-import rnb.myemotionforme.Page.*;
-public class Login extends AppCompatActivity {
+import rnb.myemotionforme.Page.SignUp;
+
+public class Login extends FragmentActivity {
 
     private static final String TAG = "DEBUG";
     String res = "test";
     private ProgressBar spinner;
-    HTTPUtil http = new HTTPUtil();
-    JsonParse Json = new JsonParse();
+ //   HTTPUtil http = new HTTPUtil();
+  //  JsonParse Json = new JsonParse();
+    EditText email;
+    EditText passwd;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
-        startActivity(new Intent(this, Splash.class));
 
-        spinner = (ProgressBar) findViewById(R.id.progressBar);
+        spinner = (ProgressBar) findViewById(R.id.pb_login);
         spinner.setVisibility(View.GONE);
+
+        email = (EditText)findViewById(R.id.et_email_login);
+        passwd = (EditText)findViewById(R.id.et_passwd_login);
 
     }
 
-    public void LoginButtonClicked(View v) throws Exception {
+    public void Login_OkButtonClicked(View v) throws Exception {
 
+        Intent intent = new Intent(getApplicationContext(), Menu.class);
+        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "로그인되었습니다.", Toast.LENGTH_LONG).show();
+
+        /*
         spinner.setVisibility(View.VISIBLE);
         Thread thread = new Thread() {
             public void run() {
@@ -57,10 +68,13 @@ public class Login extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_LONG).show();
         }
     }
+    */
+    }
 
-    public void SignUpButtonClicked(View v) {
+    public void Login_SignUpButtonClicked(View v) {
         Intent intent = new Intent(getApplicationContext(), SignUp.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), " 회원 가입", Toast.LENGTH_LONG).show();
+
     }
 }

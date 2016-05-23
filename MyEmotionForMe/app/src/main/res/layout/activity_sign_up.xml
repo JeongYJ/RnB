@@ -28,24 +28,19 @@
                 android:ems="10"
                 android:hint="E-mail ID"
                 android:textColorHint="@color/white"
-                android:id="@+id/et_email"
+                android:id="@+id/et_email_signup"
                 android:layout_marginTop="20dp"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/bt_cancel"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_password"
+                android:id="@+id/et_passwd_signup"
                 android:inputType="textPassword"
-                android:layout_below="@+id/et_name"
                 android:textColorHint="@color/white"
                 android:hint="Password"
-                android:layout_toRightOf="@+id/bt_cancel"
-                android:layout_alignRight="@+id/et_name"
-                android:layout_alignEnd="@+id/et_name"
                 android:layout_weight="0.76" />
 
             <EditText
@@ -53,10 +48,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:textColorHint="@color/white"
-                android:id="@+id/et_confirmPasswd"
+                android:id="@+id/et_confirmPW_signup"
                 android:inputType="textPassword"
-                android:layout_below="@+id/et_password"
-                android:layout_toRightOf="@+id/bt_cancel"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:hint="Password 확인" />
@@ -66,10 +59,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:textColorHint="@color/white"
-                android:id="@+id/et_name"
+                android:id="@+id/et_name_signup"
                 android:hint="Name"
-                android:layout_below="@+id/et_password"
-                android:layout_toRightOf="@+id/bt_cancel"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -83,30 +74,28 @@
             android:gravity="center"
             >
 
-
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_cancel_orig"
-                android:id="@+id/bt_cancel"
+                android:id="@+id/bt_cancel_signup"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginRight="80dp"
-                android:onClick="CancelButtonClicked" />
+                android:onClick="Signup_CancelButtonClicked" />
 
 
             <ImageButton
-                android:id="@+id/btn_ok"
+                android:id="@+id/bt_ok_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:background="@drawable/btn_ok_orig"
-                android:onClick="JoinButtonClicked"
-                android:layout_alignTop="@+id/btn_cancel"
-                android:layout_toRightOf="@+id/btn_cancel"
-                android:layout_toEndOf="@+id/btn_cancel"
-                android:layout_below="@+id/user_ID"
+                android:onClick="Signup_OkButtonClicked"
+                android:layout_alignTop="@+id/btn_cancel_signup"
+                android:layout_toRightOf="@+id/btn_cancel_signup"
+                android:layout_toEndOf="@+id/btn_cancel_signup"
                 />
 
         </LinearLayout>
@@ -115,11 +104,10 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
+            android:id="@+id/pb_signup"
             android:progressDrawable="@drawable/loading"
-            android:layout_alignTop="@+id/textView4"
-            android:layout_toLeftOf="@+id/bt_ok"
-            android:layout_toStartOf="@+id/bt_ok" />
+            android:layout_toLeftOf="@+id/bt_ok_signup"
+            android:layout_toStartOf="@+id/bt_ok_signup" />
     </LinearLayout>
 
 

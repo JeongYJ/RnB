@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Page.MyPage"
+    android:focusable="true"
+    android:background="@drawable/myme_blue">
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="200dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="비밀번호 변경"
+                android:gravity="left"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/tv1_mypage" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="사용자의 비밀번호를 변경합니다."
+                android:textColor="#787878"
+                android:id="@+id/tv2_mypage"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="left" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 변경"
+                android:textColor="@color/white"
+                android:id="@+id/bt_changePW_mypage"
+                android:background="#004db1"
+                android:onClick="MyPage_ChangePWButtonClicked"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+    <!--비밀번호 변경-->
+
+
+    <!--사용자 정보 변경-->
+
+
+</RelativeLayout>

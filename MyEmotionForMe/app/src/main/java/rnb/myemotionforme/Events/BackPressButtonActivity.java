@@ -15,27 +15,26 @@ public class BackPressButtonActivity {
         }
 
          public void onBackPressed() {
-                       if (isAfter2Seconds()) { //�� ó�� & 2�ʰ� ������ ���
+                       if (isAfter2Seconds()) {
                                backKeyPressedTime = System.currentTimeMillis();
-                               // ����ð��� �ٽ� �ʱ�ȭ
                                toast = Toast.makeText(activity, "뒤로가기", Toast.LENGTH_SHORT);
                                toast.show();
                                 return;
                       }
-                      if (isBefore2Seconds()) { //2�ʰ� ������ �ʾ��� ���
-                                programShutdown(); //���α׷��� �����Ų��.
+                      if (isBefore2Seconds()) {
+                                programShutdown();
                                 toast.cancel();
                       }
          }
 
           private Boolean isAfter2Seconds() {
                   return System.currentTimeMillis() > backKeyPressedTime + 2000;
-                                 // 2�� ������ ���
+
          }  
 
           private Boolean isBefore2Seconds() {
                   return System.currentTimeMillis() <= backKeyPressedTime + 2000;
-                                 // 2�ʰ� ������ �ʾ��� ���
+
          }
 
           private void programShutdown() {

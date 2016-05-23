@@ -1,4 +1,4 @@
-package rnb.myemotionforme.Page;
+package rnb.myemotionforme;
 
 /**
  * Created by kimminyoung on 2016-05-14.
