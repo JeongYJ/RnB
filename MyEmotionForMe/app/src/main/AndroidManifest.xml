@@ -23,6 +23,11 @@
         <activity android:name=".Page.SignUp"/>
         <activity android:name=".Page.MyPage"/>
         <activity android:name=".Page.Menu"/>
+        <activity android:name=".Page.MyPage_ChangePW"/>
+        <activity android:name=".Page.MyMusic"/>
+        <activity android:name=".Page.MyEmotion"/>
+        <activity android:name=".Page.MyRobot"/>
+        <activity android:name=".Page.MyStory"/>
 
     </application>
 

@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyEmotionForMe.iml" filepath="$PROJECT_DIR$/MyEmotionForMe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/okhttp-3.2.0/okhttp-3.2.0_.iml" filepath="$PROJECT_DIR$/okhttp-3.2.0/okhttp-3.2.0_.iml" />
-      <module fileurl="file://$PROJECT_DIR$/org.apache.httpcomponents.httpclient_4.5.2/org.apache.httpcomponents.httpclient_4.5.2_.iml" filepath="$PROJECT_DIR$/org.apache.httpcomponents.httpclient_4.5.2/org.apache.httpcomponents.httpclient_4.5.2_.iml" />
+      <module fileurl="file://$PROJECT_DIR$/okhttp-3.2.0/okhttp-3.2.0.iml" filepath="$PROJECT_DIR$/okhttp-3.2.0/okhttp-3.2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.apache.httpcomponents.httpclient_4.5.2/org.apache.httpcomponents.httpclient_4.5.2.iml" filepath="$PROJECT_DIR$/org.apache.httpcomponents.httpclient_4.5.2/org.apache.httpcomponents.httpclient_4.5.2.iml" />
     </modules>
   </component>
 </project>

@@ -26,7 +26,7 @@ public class Splash extends FragmentActivity {
                 finish();
                 finish();
             }
-        },5000);
+        },3000);
 
 
     }

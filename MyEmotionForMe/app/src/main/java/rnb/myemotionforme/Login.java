@@ -3,25 +3,29 @@ package rnb.myemotionforme;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import rnb.myemotionforme.Events.BackPressButtonActivity;
+import rnb.myemotionforme.Page.Menu;
 import rnb.myemotionforme.Page.SignUp;
 
 public class Login extends FragmentActivity {
 
+    private BackPressButtonActivity bp;
     private static final String TAG = "DEBUG";
-    String res = "test";
+    private String res = "test";
     private ProgressBar spinner;
- //   HTTPUtil http = new HTTPUtil();
-  //  JsonParse Json = new JsonParse();
-    EditText email;
-    EditText passwd;
-
+    //HTTPUtil http = new HTTPUtil();
+    JsonParse Json = new JsonParse();
+    private EditText email;
+    private EditText passwd;
 
 
     @Override
@@ -29,6 +33,7 @@ public class Login extends FragmentActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+        bp = new BackPressButtonActivity(this);
 
         spinner = (ProgressBar) findViewById(R.id.pb_login);
         spinner.setVisibility(View.GONE);
@@ -40,41 +45,53 @@ public class Login extends FragmentActivity {
 
     public void Login_OkButtonClicked(View v) throws Exception {
 
-        Intent intent = new Intent(getApplicationContext(), Menu.class);
-        startActivity(intent);
-        Toast.makeText(getApplicationContext(), "로그인되었습니다.", Toast.LENGTH_LONG).show();
 
-        /*
-        spinner.setVisibility(View.VISIBLE);
-        Thread thread = new Thread() {
-            public void run() {
-                EditText user_email = (EditText) findViewById(R.id.user_Email);
-                EditText password = (EditText) findViewById(R.id.password);
-                res = http.signin(user_email.getText().toString(), password.getText().toString());
-            }
-        };
-        thread.start();
-        thread.join();
+        String email_id = email.getText().toString();
+        String password = passwd.getText().toString();
 
-        spinner.setVisibility(View.GONE);
-        Log.e(TAG, "result : " + res);
-        if (Json.StatusJsonParse(res)) {
-            Json.getUserInfo(res);
-            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(Login.this, Menu.class);
-            startActivity(i);
-            finish();
-        } else {
-            Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_LONG).show();
+        email_id = email_id.trim();
+        password = password.trim();
+
+        if(email_id.getBytes().length <= 0 || password.getBytes().length <= 0){//빈값이 넘어올때의 처리
+            Toast.makeText(Login.this, "값을 입력하세요.", Toast.LENGTH_SHORT).show();
         }
-    }
-    */
+        else {
+            JSONObject obj = new JSONObject();
+            obj.put("uemail", email_id);
+            obj.put("upasswd", password);
+            Log.e(TAG, "json : " + obj.toString());//json 객체 확인
+
+            HttpTask task = new HttpTask("/login.php", obj.toString());
+            String res = task.execute().get(); //결과값을 받음
+            Log.e(TAG, "result : " + res);//결과 객체 확인
+
+
+            //Json 결과 파서
+            if (Json.StatusJsonParse(res)) {
+                // Json.getUserInfo(res);
+                Toast.makeText(getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
+                //spinner.setVisibility(View.INVISIBLE);
+                Intent i = new Intent(Login.this, Menu.class);
+                startActivity(i);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "ID 또는 비밀번호를 다시 입력해주세요.", Toast.LENGTH_LONG).show();
+                //spinner.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     public void Login_SignUpButtonClicked(View v) {
-        Intent intent = new Intent(getApplicationContext(), SignUp.class);
-        startActivity(intent);
         Toast.makeText(getApplicationContext(), " 회원 가입", Toast.LENGTH_LONG).show();
-
+        Intent intent = new Intent(Login.this, SignUp.class);
+        startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        bp.onBackPressed();
+    }
+
+
 }
