@@ -1,5 +1,6 @@
 package rnb.myemotionforme.Page;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
@@ -17,5 +18,11 @@ public class MyEmotion extends ActionBarActivity {
         getSupportActionBar().setTitle("MyEmotion");
 
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(MyEmotion.this, Menu.class);
+        startActivity(i);
+        finish();
+        super.onBackPressed();
+    }
 }

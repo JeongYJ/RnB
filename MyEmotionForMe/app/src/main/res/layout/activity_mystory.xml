@@ -15,4 +15,30 @@
     <!--비밀번호 변경 데이터베이스와 연결하기-->
 
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="오늘의 이야기 작성하기"
+        android:textColor="@color/white"
+        android:id="@+id/bt_writestory_mystory"
+        android:background="#004db1"
+        android:onClick="MyStory_WriteStoryButtonClicked"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="누군가의 이야기 엿보기"
+        android:id="@+id/bt_anotherstory_mystory"
+        android:background="#004db1"
+        android:onClick="MyStory_AnotherStoryButtonClicked"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>

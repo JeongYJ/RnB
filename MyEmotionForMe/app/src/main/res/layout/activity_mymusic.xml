@@ -12,7 +12,70 @@
     android:background="@drawable/myme">
 
 
-    <!--비밀번호 변경 데이터베이스와 연결하기-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Summer_Nights"
+        android:id="@+id/bt_tset1Music"
+        android:onClick="test1Music"
+        android:layout_marginBottom="174dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="phone"
+        android:onClick="test2Music"
+        android:id="@+id/bt_test2Music"
+        android:layout_marginTop="51dp"
+        android:layout_alignTop="@+id/bt_tset1Music"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="재생"
+        android:onClick="musicPlayClick"
+        android:id="@+id/bt_play"
+        android:layout_marginBottom="77dp"
+        android:layout_above="@+id/bt_tset1Music"
+        android:layout_toLeftOf="@+id/bt_stop"
+        android:layout_toStartOf="@+id/bt_stop" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="정지"
+        android:onClick="musicStopClick"
+        android:id="@+id/bt_stop"
+        android:layout_alignTop="@+id/bt_play"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Music_Name"
+        android:textColor="@android:color/white"
+        android:id="@+id/tv_musicName"
+        android:layout_above="@+id/bt_play"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carefree"
+        android:onClick="test3Music"
+        android:id="@+id/bt_test3Music"
+        android:layout_below="@+id/bt_test2Music"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 
 </RelativeLayout>
