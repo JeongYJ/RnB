@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import rnb.myemotionforme.Events.BackPressButtonActivity;
 import rnb.myemotionforme.Page.Menu;
 import rnb.myemotionforme.Page.SignUp;
+import rnb.myemotionforme.key.Key;
 
 public class Login extends FragmentActivity {
 
@@ -45,7 +46,6 @@ public class Login extends FragmentActivity {
 
     public void Login_OkButtonClicked(View v) throws Exception {
 
-
         String email_id = email.getText().toString();
         String password = passwd.getText().toString();
 
@@ -53,7 +53,7 @@ public class Login extends FragmentActivity {
         password = password.trim();
 
         if(email_id.getBytes().length <= 0 || password.getBytes().length <= 0){//빈값이 넘어올때의 처리
-            Toast.makeText(Login.this, "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "ID 또는 비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
         else {
             JSONObject obj = new JSONObject();
@@ -69,6 +69,8 @@ public class Login extends FragmentActivity {
             //Json 결과 파서
             if (Json.StatusJsonParse(res)) {
                 // Json.getUserInfo(res);
+                Key.user_email = email_id;
+                Key.user_passwd = password;
                 Toast.makeText(getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
                 //spinner.setVisibility(View.INVISIBLE);
                 Intent i = new Intent(Login.this, Menu.class);
@@ -79,6 +81,7 @@ public class Login extends FragmentActivity {
                 //spinner.setVisibility(View.INVISIBLE);
             }
         }
+
     }
 
     public void Login_SignUpButtonClicked(View v) {

@@ -11,9 +11,47 @@
     android:focusable="true"
     android:background="@drawable/myme">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:id="@+id/linear1_mystory"
+        android:background="@color/white">
 
-    <!--비밀번호 변경 데이터베이스와 연결하기-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="My Story List"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/tv1_mystory" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="이야기가 비어있습니다. 오늘의 이야기를 작성해주세요."
+            android:layout_marginTop="20dp"
+            android:id="@+id/tv_empty_mystory"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/lv_mystory" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/linear1_mystory">
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -24,7 +62,6 @@
         android:id="@+id/bt_writestory_mystory"
         android:background="#004db1"
         android:onClick="MyStory_WriteStoryButtonClicked"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal" />
 
@@ -36,9 +73,11 @@
         android:text="누군가의 이야기 엿보기"
         android:id="@+id/bt_anotherstory_mystory"
         android:background="#004db1"
+        android:layout_marginTop="20dp"
         android:onClick="MyStory_AnotherStoryButtonClicked"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+</LinearLayout>
 
 </RelativeLayout>

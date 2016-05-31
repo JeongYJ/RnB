@@ -60,6 +60,11 @@ public class SignUp extends FragmentActivity {
         String uemail = email.getText().toString();
         String uname = name.getText().toString();
 
+        passwd = passwd.trim();
+        confirmPW = confirmPW.trim();
+        uemail = uemail.trim();
+        uname = uname.trim();
+
         if(passwd.getBytes().length <= 0 || confirmPW.getBytes().length <= 0 || uemail.getBytes().length <= 0 || uname.getBytes().length <= 0){//빈값이 넘어올때의 처리
             Toast.makeText(SignUp.this, "값을 입력하세요.", Toast.LENGTH_SHORT).show();
         }

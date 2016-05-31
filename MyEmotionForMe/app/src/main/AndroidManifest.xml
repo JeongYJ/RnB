@@ -28,6 +28,9 @@
         <activity android:name=".Page.MyEmotion"/>
         <activity android:name=".Page.MyRobot"/>
         <activity android:name=".Page.MyStory"/>
+        <activity android:name=".Page.MyStory_MyStoryListShow"/>
+        <activity android:name=".Page.MyStory_MyStoryWrite"/>
+        <activity android:name=".Page.MyStory_WhosStoryChoose"/>
 
     </application>
 
