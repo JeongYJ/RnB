@@ -1,10 +1,25 @@
 package rnb.myemotionforme.Page;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 import rnb.myemotionforme.Events.BackPressButtonActivity;
+import rnb.myemotionforme.HttpTask;
+import rnb.myemotionforme.JsonParse;
+import rnb.myemotionforme.Login;
 import rnb.myemotionforme.R;
+import rnb.myemotionforme.key.JsonKey_User;
 
 /**
  * Created by yj on 16. 5. 24..
@@ -15,19 +30,102 @@ import rnb.myemotionforme.R;
 
 public class MyPage_ChangePW extends ActionBarActivity {
     private BackPressButtonActivity bp;
+
+    private static final String TAG = "DEBUG";
+    private String res = "test";
+    //HTTPUtil http = new HTTPUtil();
+    JsonParse Json = new JsonParse();
+    EditText et_currpasswd, et_newpasswd, et_confpasswd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage_changepw);
         getSupportActionBar().setTitle("MyPage");
         bp = new BackPressButtonActivity(this);
+
+
+        et_currpasswd = (EditText) findViewById(R.id.et_currpasswd_changepw);
+        et_newpasswd = (EditText) findViewById(R.id.et_newpasswd_changepw);
+        et_confpasswd = (EditText) findViewById(R.id.et_confpasswd_changepw);
+    }
+
+    public void ChangePW_OK_ButtonClick(View v) throws ExecutionException, InterruptedException, JSONException {
+
+        String currpasswd = et_currpasswd.getText().toString();
+        String newpasswd = et_newpasswd.getText().toString();
+        String confpasswd = et_confpasswd.getText().toString();
+
+        et_currpasswd.setTextColor(Color.BLACK);
+        et_confpasswd.setTextColor(Color.BLACK);
+        et_newpasswd.setTextColor(Color.BLACK);
+
+        //예외처리
+        if(currpasswd.getBytes().length <= 0 || newpasswd.getBytes().length <= 0 || confpasswd.getBytes().length <= 0){
+            Toast.makeText(MyPage_ChangePW.this, "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!currpasswd.equals(JsonKey_User.upasswd)) {
+            et_currpasswd.setTextColor(Color.RED);
+            Log.e("CHANGEPW","password : "+JsonKey_User.upasswd+"  user password : "+currpasswd);
+            Toast.makeText(getApplicationContext(), "기존 비밀번호와 일치 하지 않습니다!.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!newpasswd.equals(confpasswd)) {
+            et_newpasswd.setTextColor(Color.RED);
+            et_confpasswd.setTextColor(Color.RED);
+            Log.e("CHANGEPW","new passowrd : "+newpasswd+" confpasswd : "+confpasswd);
+            Toast.makeText(getApplicationContext(), "새로운 비밀번호와 확인이 일치 하지 않습니다!.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (newpasswd.length() <= 7 || newpasswd.length() > 15){
+            et_newpasswd.setTextColor(Color.RED);
+            Log.e("CHANGEPW","new passowrd length: "+newpasswd.length());
+            Toast.makeText(getApplicationContext(), "비밀번호는 8자이상 15자 이하로 작성해야합니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        JSONObject obj = new JSONObject();
+        obj.put("uemail", JsonKey_User.uemail);
+        obj.put("newpasswd",newpasswd);
+        Log.e(TAG, "json : " + obj.toString());//json 객체 확인
+
+        HttpTask task = new HttpTask("/RnB/changePW.php", obj.toString());
+        String res = task.execute().get(); //결과값을 받음
+        Log.e(TAG, "result : " + res);//결과 객체 확인
+
+        //Json 결과 파서
+        if (Json.StatusJsonParse(res)) {
+            // Json.getUserInfo(res);
+            Toast.makeText(getApplicationContext(), "비밀번호가 변경되었습니다. 다시 로그인해주세요.", Toast.LENGTH_LONG).show();
+            //spinner.setVisibility(View.INVISIBLE);
+            JsonKey_User.upasswd = newpasswd;
+            //newpasswd를 디비로 넘겨주세요  changePW.php
+            Intent i = new Intent(MyPage_ChangePW.this, Login.class);
+            startActivity(i);
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+            //spinner.setVisibility(View.INVISIBLE);
+        }
+
+    }
+    public void ChangePW_Cancel_ButtonClick(View v){
+        Intent i = new Intent(MyPage_ChangePW.this, MyPage.class);
+        startActivity(i);
+        finish();
     }
 
     @Override
-    public void onBackPressed()
-    {
-        bp.onBackPressed();
+    public void onBackPressed() {
+        Intent i = new Intent(MyPage_ChangePW.this, MyPage.class);
+        startActivity(i);
+        finish();
+        super.onBackPressed();
     }
+
 
 
 }

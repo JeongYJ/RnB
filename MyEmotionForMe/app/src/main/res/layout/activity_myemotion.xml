@@ -12,7 +12,302 @@
     android:background="@drawable/myme">
 
 
-    <!--비밀번호 변경 데이터베이스와 연결하기-->
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/linearLayout3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Today's Emotion"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="2016-06-17"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/tx_date_myemotion"
+        android:layout_gravity="bottom" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_good_emotion"
+            android:onClick="goodEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/goodicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_happy_emotion"
+            android:onClick="happyEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/happyicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_laughing_emotion"
+            android:onClick="laughingEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/laughingicon_orig"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_excited_emotion"
+            android:onClick="excitedEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/excitedicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_inlove_emotion"
+            android:onClick="inloveEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/inloveicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_surprised_emotion"
+            android:onClick="surprisedEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/surprisedicon_orig"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_soso_emotion"
+            android:onClick="sosoEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/sosoicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_shocked_emotion"
+            android:onClick="shockedEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/shockedicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_annoyance_emotion"
+            android:onClick="annoyanceEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/annoyanceicon_orig"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_doubtful_emotion"
+            android:onClick="doubtfulEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/doubtfulicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_exasperated_emotion"
+            android:onClick="exasperatedEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/exasperatedicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_sad_emotion"
+            android:onClick="sadEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/sadicon_orig"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_crying_emotion"
+            android:onClick="cryingEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/cryingicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_worried_emotion"
+            android:onClick="worriedEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/worriedicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_disbelief_emotion"
+            android:onClick="disbeliefEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/disbelieficon_orig"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_mad_emotion"
+            android:onClick="madEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/madicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_scared_emotion"
+            android:onClick="scaredEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/scaredicon_orig"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_tired_emotion"
+            android:onClick="tiredEmotionOnClicked"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/tiredicon_orig"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:background="#004db1"
+        android:onClick="bt_go_to_myEmotionChart"
+        android:gravity="center"
+        >
+        <![CDATA[
+            android:id="@+id/btnLineGraph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/text_line_graph" />
+
+            android:id="@+id/btnLineGraphWithRegion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/text_line_graph_with_region" />
+
+
+
+            android:id="@+id/btnRadarGraph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="@string/text_radar_graph" />
+
+        ]]>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/imageButton"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/bt_go_to_myEmtionchart"
+            android:background="@drawable/chart_icon"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:text="감정그래프"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
 
 
 </RelativeLayout>

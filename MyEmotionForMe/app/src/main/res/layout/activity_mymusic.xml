@@ -12,70 +12,122 @@
     android:background="@drawable/myme">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Summer_Nights"
-        android:id="@+id/bt_tset1Music"
-        android:onClick="test1Music"
-        android:layout_marginBottom="174dp"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="phone"
-        android:onClick="test2Music"
-        android:id="@+id/bt_test2Music"
-        android:layout_marginTop="51dp"
-        android:layout_alignTop="@+id/bt_tset1Music"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="재생"
-        android:onClick="musicPlayClick"
-        android:id="@+id/bt_play"
-        android:layout_marginBottom="77dp"
-        android:layout_above="@+id/bt_tset1Music"
-        android:layout_toLeftOf="@+id/bt_stop"
-        android:layout_toStartOf="@+id/bt_stop" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="My Music"
+            android:gravity="center"
+            android:id="@+id/tv_musicName"
+            android:textColor="@color/white"
+            android:background="#b11748"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="정지"
-        android:onClick="musicStopClick"
-        android:id="@+id/bt_stop"
-        android:layout_alignTop="@+id/bt_play"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <ImageView
+            android:layout_width="171dp"
+            android:layout_height="171dp"
+            android:id="@+id/imageView"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/music_icon"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Music_Name"
-        android:textColor="@android:color/white"
-        android:id="@+id/tv_musicName"
-        android:layout_above="@+id/bt_play"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:weightSum="1"
+            android:layout_marginTop="8dp"
+            android:background="#b11748"
+            android:layout_margin="10dp"
+            >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Carefree"
-        android:onClick="test3Music"
-        android:id="@+id/bt_test3Music"
-        android:layout_below="@+id/bt_test2Music"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Music Player"
+                android:gravity="center"
+                android:layout_weight="1.25"
+                android:textColor="@color/white"
+                android:background="#b11748"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="▶"
+                android:textSize="25dp"
+                android:onClick="musicPlayClick"
+                android:id="@+id/bt_play"
+                android:textColor="@color/white"
+                android:background="#b11748"
+
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="■"
+                android:textSize="25dp"
+                android:onClick="musicStopClick"
+                android:id="@+id/bt_stop"
+                android:textColor="@color/white"
+                android:background="#b11748"/>
+
+        </LinearLayout>
+
+
+        <ListView
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/lv_musicList"
+            android:background="@color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Summer_Nights디버깅용"
+            android:id="@+id/bt_tset1Music"
+            android:onClick="test1Music"
+            android:layout_marginBottom="174dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="phone디버깅용"
+            android:onClick="test2Music"
+            android:id="@+id/bt_test2Music"
+            android:layout_marginTop="51dp"
+            android:layout_alignTop="@+id/bt_tset1Music"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carefree디버깅용"
+            android:onClick="test3Music"
+            android:id="@+id/bt_test3Music"
+            android:layout_below="@+id/bt_test2Music"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

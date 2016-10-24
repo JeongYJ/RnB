@@ -3,12 +3,22 @@ package rnb.myemotionforme.Page;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import rnb.myemotionforme.Events.ListData;
+import rnb.myemotionforme.Events.MyMusic_ListVIewAdapter;
+import rnb.myemotionforme.HttpTask;
+import rnb.myemotionforme.JsonParse;
 import rnb.myemotionforme.R;
 import rnb.myemotionforme.SocketUtil;
+import rnb.myemotionforme.key.JsonKey_User;
 
 /**
  * Created by yj on 16. 5. 24..
@@ -16,7 +26,8 @@ import rnb.myemotionforme.SocketUtil;
 public class MyMusic extends ActionBarActivity {
 
     TextView tv_musicName;
-    String[] musicList={"Summer_Nights","phone","Carefree"," Get_Outside_Jason_Farnham_pop"," Vacation_Uke_ALBLS_pop"};
+    ListView music_list;
+    MyMusic_ListVIewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +35,56 @@ public class MyMusic extends ActionBarActivity {
         setContentView(R.layout.activity_mymusic);
         getSupportActionBar().setTitle("MyMusic");
         tv_musicName = (TextView) findViewById(R.id.tv_musicName);
+        music_list = (ListView) findViewById(R.id.lv_musicList);
+        adapter = new MyMusic_ListVIewAdapter(this);
+        music_list.setAdapter(adapter);
+        try {
+            music_setting();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
+    public void music_setting() throws Exception{
+
+        JSONObject obj = new JSONObject();
+        obj.put("uemail", JsonKey_User.uemail); //
+        Log.e("uemail","uemail:" + obj.toString());
+
+        HttpTask task = new HttpTask("/RnB/myMusic_select.php", obj.toString());
+        String res = task.execute().get(); //결과값을 받음
+
+        JsonParse json = new JsonParse();
+        json.makeJsonObject(res);
+        if(!json.getJsonState()) return;
+
+        int size = json.getJsonArraySize();
+
+        if(size == 0)
+        {
+            Toast.makeText(getApplicationContext(), "현재 감정에 맞는 음악이 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            for (int i = 0; i < size; i++) {
+                String title = (String) json.getJsonArrayData(i, "mtitle");
+                String musician = (String) json.getJsonArrayData(i, "mmusician");
+                String kind = (String) json.getJsonArrayData(i, "mkind");
+                adapter.addItem(getResources().getDrawable(R.drawable.myme_icon), title, "작곡가 :" + musician + "/장르 : " + kind);
+            }
+            music_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                    ListData mData = adapter.mListData.get(position);
+                    tv_musicName.setText(mData.mTitle);
+                    openSocket("music=" + mData.mTitle);
+                    Toast.makeText(MyMusic.this, mData.mTitle, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+
     @Override
     public void onBackPressed() {
         Intent i = new Intent(MyMusic.this, Menu.class);
@@ -38,6 +98,7 @@ public class MyMusic extends ActionBarActivity {
         mysocket.setmessage(msg);
         mysocket.run();
     }
+
     public void musicPlayClick(View v){
         Toast.makeText(getApplicationContext(), "play", Toast.LENGTH_SHORT).show();
         openSocket("music=play");
@@ -46,19 +107,5 @@ public class MyMusic extends ActionBarActivity {
         Toast.makeText(getApplicationContext(), "stop", Toast.LENGTH_SHORT).show();
         openSocket("music=stop");
     }
-    public void test1Music(View v){
-        Toast.makeText(getApplicationContext(), "test1", Toast.LENGTH_SHORT).show();
-        tv_musicName.setText(musicList[0]);
-        openSocket("music="+musicList[0]);
-    }
-    public void test2Music(View v){
-        Toast.makeText(getApplicationContext(), "test2", Toast.LENGTH_SHORT).show();
-        tv_musicName.setText(musicList[1]);
-        openSocket("music="+musicList[1]);
-    }
-    public void test3Music(View v){
-        Toast.makeText(getApplicationContext(), "test3", Toast.LENGTH_SHORT).show();
-        tv_musicName.setText(musicList[2]);
-        openSocket("music="+musicList[2]);
-    }
+
 }

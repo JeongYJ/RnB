@@ -15,7 +15,7 @@ import org.json.JSONObject;
 import rnb.myemotionforme.Events.BackPressButtonActivity;
 import rnb.myemotionforme.Page.Menu;
 import rnb.myemotionforme.Page.SignUp;
-import rnb.myemotionforme.key.Key;
+import rnb.myemotionforme.key.JsonKey_User;
 
 public class Login extends FragmentActivity {
 
@@ -48,7 +48,6 @@ public class Login extends FragmentActivity {
 
         String email_id = email.getText().toString();
         String password = passwd.getText().toString();
-
         email_id = email_id.trim();
         password = password.trim();
 
@@ -61,16 +60,16 @@ public class Login extends FragmentActivity {
             obj.put("upasswd", password);
             Log.e(TAG, "json : " + obj.toString());//json 객체 확인
 
-            HttpTask task = new HttpTask("/login.php", obj.toString());
+            HttpTask task = new HttpTask("/RnB/login.php", obj.toString());
             String res = task.execute().get(); //결과값을 받음
             Log.e(TAG, "result : " + res);//결과 객체 확인
-
 
             //Json 결과 파서
             if (Json.StatusJsonParse(res)) {
                 // Json.getUserInfo(res);
-                Key.user_email = email_id;
-                Key.user_passwd = password;
+                JsonKey_User.uemail = email_id;
+                JsonKey_User.upasswd = password;
+                Log.e(TAG, "JsonKey_User.uno : " + JsonKey_User.uno);
                 Toast.makeText(getApplicationContext(), "환영합니다.", Toast.LENGTH_LONG).show();
                 //spinner.setVisibility(View.INVISIBLE);
                 Intent i = new Intent(Login.this, Menu.class);

@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="rnb.myemotionforme">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,21 +16,25 @@
         <activity android:name=".Events.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"/>
-        <activity android:name=".Page.SignUp"/>
-        <activity android:name=".Page.MyPage"/>
-        <activity android:name=".Page.Menu"/>
-        <activity android:name=".Page.MyPage_ChangePW"/>
-        <activity android:name=".Page.MyMusic"/>
-        <activity android:name=".Page.MyEmotion"/>
-        <activity android:name=".Page.MyRobot"/>
-        <activity android:name=".Page.MyStory"/>
-        <activity android:name=".Page.MyStory_MyStoryListShow"/>
-        <activity android:name=".Page.MyStory_MyStoryWrite"/>
-        <activity android:name=".Page.MyStory_WhosStoryChoose"/>
+        <activity android:name=".Login" />
+        <activity android:name=".Page.SignUp" />
+        <activity android:name=".Page.MyPage" />
+        <activity android:name=".Page.Menu" />
+        <activity android:name=".Page.MyPage_ChangePW" />
+        <activity android:name=".Page.MyMusic" />
+        <activity android:name=".Page.MyEmotion" />
+        <activity android:name=".Page.MyRobot" />
+        <activity android:name=".Page.MyStory" />
+        <activity android:name=".Page.MyStory_MyStoryListShow" />
+        <activity android:name=".Page.MyStory_MyStoryWrite" />
+        <activity android:name=".Page.MyStory_WhosStoryChoose" />
+        <activity android:name=".Page.MyEmotion_chart"/>
+        <activity android:name=".hzgrapher.CircleGraphActivity"/>
+        <activity android:name=".hzgrapher.PieGraphActivity"/>
 
     </application>
 

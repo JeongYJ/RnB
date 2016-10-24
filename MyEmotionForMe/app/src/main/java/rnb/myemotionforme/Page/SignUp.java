@@ -17,6 +17,7 @@ import rnb.myemotionforme.HttpTask;
 import rnb.myemotionforme.JsonParse;
 import rnb.myemotionforme.Login;
 import rnb.myemotionforme.R;
+import rnb.myemotionforme.key.JsonKey_User;
 
 public class SignUp extends FragmentActivity {
 
@@ -84,15 +85,14 @@ public class SignUp extends FragmentActivity {
                     Log.e(TAG, "json : " + obj.toString());//json 객체 확인
 
                     //서버로 보냄 파라미터 : "url"동적으로 변화되는 경로, "jsonObject"서버로 보내질 객체
-                    HttpTask task = new HttpTask("/join.php", obj.toString());
+                    HttpTask task = new HttpTask("/RnB/join.php", obj.toString());
                     res = task.execute().get(); //결과값을 받음
                     Log.e(TAG, "result : " + res);//결과 객체 확인
 
-                   // Log.e("TEST", "obj String : " + obj.toString());
-
-                   // spinner.setVisibility(View.VISIBLE);
-
                     if (json.StatusJsonParse(res)) {
+                        JsonKey_User.upasswd = passwd;
+                        JsonKey_User.uemail = uemail;
+                        JsonKey_User.uname = uname;
                         Toast.makeText(getApplicationContext(), uname + "님 회원가입되셨습니다.", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(SignUp.this, Login.class);
                         startActivity(i);
