@@ -12,7 +12,16 @@
         android:icon="@drawable/myme_icon"
         android:label="My.Me"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+
+
+        android:windowSoftInputMode="stateAlwaysHidden"
+        >
+        <!--
+        android:windowSoftInputMode="adjustResize"
+        android:windowSoftInputMode="adjustPan"
+         android:windowSoftInputMode="adjustNothing"
+         동작 안함 이유는 아직 모르겟다.!-->
         <activity android:name=".Events.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +38,21 @@
         <activity android:name=".Page.MyEmotion" />
         <activity android:name=".Page.MyRobot" />
         <activity android:name=".Page.MyStory" />
-        <activity android:name=".Page.MyStory_MyStoryListShow" />
+        <activity android:name=".Page.MyStory_ListShow"
+            />
         <activity android:name=".Page.MyStory_MyStoryWrite" />
+
+     <!--
         <activity android:name=".Page.MyStory_WhosStoryChoose" />
+
+        -->
+
+        <activity android:name=".Page.MyStory_WhosStoryChoose_Backup" />
+
         <activity android:name=".Page.MyEmotion_chart"/>
+        <activity android:name=".Page.WhosStory"/>
+        <activity android:name=".Page.WhosStory_ListShow"/>
+
         <activity android:name=".hzgrapher.CircleGraphActivity"/>
         <activity android:name=".hzgrapher.PieGraphActivity"/>
 

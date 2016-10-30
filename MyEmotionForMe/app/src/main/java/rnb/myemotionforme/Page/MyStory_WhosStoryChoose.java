@@ -10,13 +10,15 @@ import rnb.myemotionforme.R;
 
 /**
  * Created by yj on 16. 5. 24..
+ * 버튼을 눌러 Who's Story로 이동
  */
+
 public class MyStory_WhosStoryChoose extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mystory_whosstory);
+        setContentView(R.layout.activity_mystory_choose_whosstory);
         getSupportActionBar().setTitle("Who's Story?");
     }
 
@@ -28,19 +30,12 @@ public class MyStory_WhosStoryChoose extends ActionBarActivity {
         super.onBackPressed();
     }
 
-    public void WhosStory_GoLikesMeButtonClicked(View v) throws Exception {
-        Toast.makeText(getApplicationContext(), "GO", Toast.LENGTH_LONG).show();
-       // Intent i = new Intent(MyStory_WhosStoryChoose.this, MyPage_ChangePW.class);
-       // startActivity(i);
-       // finish();
-    }
-
     public void WhosStory_GoTodayButtonClicked(View v) throws Exception {
 
-        Toast.makeText(getApplicationContext(), "GO", Toast.LENGTH_LONG).show();
-       // Intent i = new Intent(MyStory_WhosStoryChoose.this, MyStory.class);
-       // startActivity(i);
-       // finish();
+        Toast.makeText(getApplicationContext(), "다른 사용자의 이야기를 엿보러 갑니다.", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(MyStory_WhosStoryChoose.this, WhosStory.class);
+        startActivity(i);
+        finish();
     }
 
 }

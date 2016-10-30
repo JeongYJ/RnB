@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import rnb.myemotionforme.Events.BackPressButtonActivity;
 import rnb.myemotionforme.R;
 import rnb.myemotionforme.key.Key;
@@ -22,6 +25,7 @@ public class MyStory_MyStoryWrite extends ActionBarActivity {
     TextView tv_emotion_write;
     EditText et_title_write;
     EditText et_text_write;
+    String date = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +33,19 @@ public class MyStory_MyStoryWrite extends ActionBarActivity {
         getSupportActionBar().setTitle("오늘의 이야기 작성");
         setContentView(R.layout.activity_mystory_write);
         bp = new BackPressButtonActivity(this);
+
+        long now = System.currentTimeMillis();
+
+        Date todate = new Date(now);
+        SimpleDateFormat CurDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        date = CurDateFormat.format(todate);
+
         tv_date_write = (TextView)findViewById(R.id.tv_date_write);
         tv_emotion_write = (TextView)findViewById(R.id.tv_emotion_write);
         et_title_write = (EditText) findViewById(R.id.et_title_write);
         et_text_write = (EditText)findViewById(R.id.et_text_write);
+
+        tv_date_write.setText(date.toString());
 
     }
 
@@ -47,7 +60,7 @@ public class MyStory_MyStoryWrite extends ActionBarActivity {
 
     public void Write_StoreButtonClicked(View v) throws Exception {
 
-            String date = tv_date_write.getText().toString();
+                    //tv_date_write.getText().toString();
             String title = et_title_write.getText().toString();
             String text = et_text_write.getText().toString();
 
@@ -56,12 +69,12 @@ public class MyStory_MyStoryWrite extends ActionBarActivity {
                 Log.d("TAG_text", text);
                 Key.myStory_date = date;
                 Key.myStory_title = title;
-                Key.myStory_text = text;
+                //Key.myStory_text = text;
 
                 title = title.trim();
                 text = text.trim();
 
-                Toast.makeText(getApplicationContext(), "작성된 이야기를 저장합니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "작성된 이야기를 저장합니다.", Toast.LENGTH_SHORT).show();
 
                 //   MyStory.mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
                 //              Key.myStory_title,
@@ -76,7 +89,7 @@ public class MyStory_MyStoryWrite extends ActionBarActivity {
 
     public void Write_CancelButtonClicked(View v) throws Exception {
 
-        Toast.makeText(getApplicationContext(), "취소", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "이전 화면으로 돌아갑니다.", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(MyStory_MyStoryWrite.this, MyStory.class);
         startActivity(i);
         finish();

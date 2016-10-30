@@ -1,4 +1,4 @@
-package rnb.myemotionforme.Events;
+package rnb.myemotionforme.ListView;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

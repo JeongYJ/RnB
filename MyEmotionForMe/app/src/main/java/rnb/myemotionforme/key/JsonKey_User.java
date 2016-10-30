@@ -13,5 +13,7 @@ public class JsonKey_User {
     public static String uemail = "email";
     public static String upasswd = "password";
     public static int uno = -1;
+
+    public static String emotion = "";
 }
 

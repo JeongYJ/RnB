@@ -10,35 +10,34 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import rnb.myemotionforme.ListView.ListData;
-import rnb.myemotionforme.ListView.MyStory_ListVIewAdapter;
 import rnb.myemotionforme.Events.SwipeDismissListViewTouchListener;
+import rnb.myemotionforme.ListView.ListData;
+import rnb.myemotionforme.ListView.WhosStory_ListVIewAdapter;
 import rnb.myemotionforme.R;
 import rnb.myemotionforme.key.Key;
 
 /**
  * Created by yj on 16. 5. 24..
  */
-public class MyStory extends ActionBarActivity {
+public class WhosStory extends ActionBarActivity {
 
     private static final String TAG = "DEBUG";
     private ArrayAdapter<String> mSpinnerAdapter = null;
     private ListView mListView = null;
-    public static MyStory_ListVIewAdapter mAdapter = null;
-    private TextView tv_empty_mystory;
+    public static WhosStory_ListVIewAdapter mAdapter = null;
+    private TextView tv_empty_whosstory;
     Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mystory);
-        getSupportActionBar().setTitle("MyStory");
+        setContentView(R.layout.activity_whosstory);
+        getSupportActionBar().setTitle("Who's Story");
 
-        tv_empty_mystory = (TextView) findViewById(R.id.tv_empty_mystory);
-        mListView = (ListView) findViewById(R.id.lv_mystory);
-        mAdapter = new MyStory_ListVIewAdapter(this);
+        tv_empty_whosstory = (TextView) findViewById(R.id.tv_empty_whosstory);
+        mListView = (ListView) findViewById(R.id.lv_whosstory);
+        mAdapter = new WhosStory_ListVIewAdapter(this);
         mListView.setAdapter(mAdapter);
 
         //mListView.setEmptyView(tv_empty_mystory);
@@ -46,11 +45,11 @@ public class MyStory extends ActionBarActivity {
         //[함수] 사용자 디비에서 정보 가져오기
         //만약 정보가 있다면 additem으로 리스트에 저장
 
-        MyStoryList();
-        //WhosStoryList();
+        //MyStoryList();
+        WhosStoryList();
         mAdapter.notifyDataSetChanged();
         if(mListView!=null) {
-            tv_empty_mystory.setVisibility(View.INVISIBLE);
+            tv_empty_whosstory.setVisibility(View.INVISIBLE);
             SwipeDismissListViewTouchListener touchListener =
                     new SwipeDismissListViewTouchListener(mListView,
                             new SwipeDismissListViewTouchListener.DismissCallbacks() {
@@ -73,8 +72,56 @@ public class MyStory extends ActionBarActivity {
             mListView.setOnScrollListener(touchListener.makeScrollListener());
         }
         else
-            tv_empty_mystory.setVisibility(View.VISIBLE);
+            tv_empty_whosstory.setVisibility(View.VISIBLE);
 
+    }
+
+    public void MyStoryList()
+    {
+        mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
+                "오늘 너무 기분이 좋다",
+                "2016-05-25");
+
+        mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
+                "동생 생일이야~",
+                "2016-09-25");
+
+        mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
+                "힝",
+                "2016-10-26");
+
+        if(!Key.myStory_title.equals("")) {
+            mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
+                    Key.myStory_title,
+                    Key.myStory_date);
+        }
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ListData mData = mAdapter.mListData.get(position);
+                Key.titleData = mData.mTitle;
+                Key.dateData = mData.mDate;
+
+                if(Key.titleData.equals("오늘 너무 기분이 좋다")) {
+
+                    Key.textData = "진짜 너무 신나~~~!";
+                }
+                else if(Key.titleData.equals("동생 생일이야~"))
+                {
+                    Key.textData = "케이크 맛있었는데 다 못먹고 와서 아쉬웠다..";
+                }
+                else
+                {
+                    Key.textData = "오버워치 하고 싶다";
+                }
+
+                // Toast.makeText(MyStory.this, Key.textData, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(WhosStory.this, WhosStory_ListShow.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
 
@@ -109,55 +156,9 @@ public class MyStory extends ActionBarActivity {
                     Key.textData = "치킨먹고 싶다...";
                 }
 
-                // Toast.makeText(WhosStory.this, Key.textData, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(WhosStory.this, Key.textData, Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(MyStory.this, MyStory_ListShow.class);
-                startActivity(i);
-                finish();
-            }
-        });
-    }
-
-
-    public void MyStoryList()
-    {
-        mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                "오늘 너무 기분이 좋다",
-                "2016-05-25");
-
-        mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                "동생 생일이야~",
-                "2016-09-25");
-
-
-        if(!Key.myStory_title.equals("")) {
-            mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                    Key.myStory_title,
-                    Key.myStory_date);
-        }
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                ListData mData = mAdapter.mListData.get(position);
-                Key.titleData = mData.mTitle;
-                Key.dateData = mData.mDate;
-
-                if(Key.titleData.equals("오늘 너무 기분이 좋다")) {
-
-                    Key.textData = "진짜 너무 신나~~~!";
-                }
-                else if(Key.titleData.equals("동생 생일이야~"))
-                {
-                    Key.textData = "케이크 맛있었는데 다 못먹고 와서 아쉬웠다..";
-                }
-                else
-                {
-                    Key.textData = "오버워치 하고 싶다";
-                }
-
-                // Toast.makeText(MyStory.this, Key.textData, Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(MyStory.this, MyStory_ListShow.class);
+                Intent i = new Intent(WhosStory.this, WhosStory_ListShow.class);
                 startActivity(i);
                 finish();
             }
@@ -166,25 +167,9 @@ public class MyStory extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(MyStory.this, Menu.class);
+        Intent i = new Intent(WhosStory.this, Menu.class);
         startActivity(i);
         finish();
         super.onBackPressed();
     }
-
-    public void MyStory_WriteStoryButtonClicked(View v) throws Exception {
-        Toast.makeText(getApplicationContext(), "오늘의 이야기를 작성합니다.", Toast.LENGTH_LONG).show();
-        Intent i = new Intent(MyStory.this, MyStory_MyStoryWrite.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void MyStory_AnotherStoryButtonClicked(View v) throws Exception {
-
-        Toast.makeText(getApplicationContext(), "누군가의 이야기를 엿보러 갑니다.", Toast.LENGTH_LONG).show();
-        Intent i = new Intent(MyStory.this, MyStory_WhosStoryChoose_Backup.class);
-        startActivity(i);
-        finish();
-    }
-
 }

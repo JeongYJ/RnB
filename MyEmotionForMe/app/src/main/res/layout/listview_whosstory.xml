@@ -4,9 +4,9 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/mystory_mImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/whosstory_mImage"
         android:src="@drawable/myme_icon"
         />
 
@@ -19,13 +19,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mystory_mText"
+            android:id="@+id/whosstory_mText"
             android:text="txt"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mystory_mDate"
+            android:id="@+id/whosstory_mDate"
             android:text="Date"
            />
 

@@ -1,4 +1,4 @@
-package rnb.myemotionforme.Events;
+package rnb.myemotionforme.ListView;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -75,9 +75,9 @@ public class MyStory_ListVIewAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.listview_mystory, null);
 
-            holder.mIcon = (ImageView) convertView.findViewById(R.id.mImage);
-            holder.mText = (TextView) convertView.findViewById(R.id.mText);
-            holder.mDate = (TextView) convertView.findViewById(R.id.mDate);
+            holder.mIcon = (ImageView) convertView.findViewById(R.id.mystory_mImage);
+            holder.mText = (TextView) convertView.findViewById(R.id.mystory_mText);
+            holder.mDate = (TextView) convertView.findViewById(R.id.mystory_mDate);
 
             convertView.setTag(holder);
         }else{

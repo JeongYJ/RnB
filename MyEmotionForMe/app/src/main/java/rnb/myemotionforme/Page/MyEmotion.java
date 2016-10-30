@@ -33,6 +33,7 @@ public class MyEmotion extends ActionBarActivity {
     public static String emotion[] = {"soso", "good", "happy", "laughing", "excited", "inlove", "annoyance", "exasperated", "mad", "surprised","shocked", "disbelief","sad","worried","crying","doubtful","scared","tired"};
     Boolean UserCheck = false;
     TextView tx_date_myemotion;
+    TextView tv_myemotion_is;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class MyEmotion extends ActionBarActivity {
 
         tx_date_myemotion = (TextView)findViewById(R.id.tx_date_myemotion);
         tx_date_myemotion.setText(str_date);
+
     }
 
     @Override
@@ -139,6 +141,51 @@ public class MyEmotion extends ActionBarActivity {
         detailsDataJsonParse(17);
     }
 
+
+    /*
+    public void todayCheck() throws Exception{
+
+        obj = new JSONObject();
+        obj.put("uemail", JsonKey_User.uemail);
+        Log.e(TAG, "json : " + obj.toString());//json 객체 확인
+        String phpPath = "/RnB/getUserState.php";
+
+        task = new HttpTask(phpPath, obj.toString());
+        String res = task.execute().get();
+        Log.e(TAG, "getUserState : " + res);
+
+        //Json 결과 파서
+        if (Json.StatusJsonParse(res) == true) {
+
+            Log.e(TAG, "이미 감정이 존재.");
+            UserCheck = true;
+
+            JSONObject obj = new JSONObject();
+            obj.put("uemail", JsonKey_User.uemail);
+            Log.e(TAG, "json : " + obj.toString());//결과 객체 확인
+
+            HttpTask task = new HttpTask("/RnB/getUserState_graph.php", obj.toString());
+            String res2 = task.execute().get(); //결과값을 받음
+            Log.e(TAG, "result : " + res);//결과 객체 확인
+
+
+            JsonParse json = new JsonParse();
+            json.makeJsonObject(res);
+            if(!json.getJsonState()) {
+                return;
+            }
+
+            tv_myemotion_is.setText(emotion[JsonKey_Details.dno]);
+
+        } else {
+            Log.e(TAG, "오늘 감정을 입력하지 않음.");
+            tv_myemotion_is.setText(" 아직 입력되지 않았어요!");
+            UserCheck = false;
+        }
+    }
+
+*/
+
     public void todayClickedCheck() throws Exception
     {
         //버튼을 누르기 전에   //usercheck = true //오늘 날짜가 이미 존재한다면 => 오늘은 기분 선택을 더이상 하지 못하도록
@@ -165,6 +212,7 @@ public class MyEmotion extends ActionBarActivity {
         }
     }
 
+
     public void detailsDataJsonParse(int ind) throws Exception {
 
         try {
@@ -172,6 +220,7 @@ public class MyEmotion extends ActionBarActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         if(UserCheck == false) {
           obj = new JSONObject();
@@ -182,7 +231,7 @@ public class MyEmotion extends ActionBarActivity {
           task = new HttpTask(phpPath, obj.toString());
           String res = task.execute().get();
           Log.e(TAG, "res결과값 : " + res);
-          // Log.e(TAG, "result : " + dno +","+ deno +","+ dred +","+ dgreen +","+ dblue +","+ diconpath);//결과 객체 확인
+          // Log.e(TAG, "result : " +   +","+ deno +","+ dred +","+ dgreen +","+ dblue +","+ diconpath);//결과 객체 확인
 
           //Json 결과 파서
           if (Json.UserStateParse(res)) {
@@ -219,6 +268,7 @@ public class MyEmotion extends ActionBarActivity {
 
             //Json 결과 파서
             if (Json.UserCheckJsonParse(res)) {
+
                 Toast.makeText(getApplicationContext(), "오늘의 감정 " + emotion[ind] + " 입력 완료!", Toast.LENGTH_LONG).show();
                 Log.e(TAG, "UserState Table에 값이 저장되었습니다");
             } else {
