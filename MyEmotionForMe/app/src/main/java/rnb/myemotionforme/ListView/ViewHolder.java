@@ -11,5 +11,6 @@ class ViewHolder{
     public ImageView mIcon;
     public TextView mText;
     public TextView mDate;
+    public TextView mEmotion;
 }
 

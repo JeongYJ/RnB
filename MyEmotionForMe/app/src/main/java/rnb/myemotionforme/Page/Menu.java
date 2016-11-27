@@ -16,6 +16,7 @@ import rnb.myemotionforme.HttpTask;
 import rnb.myemotionforme.JsonParse;
 import rnb.myemotionforme.Login;
 import rnb.myemotionforme.R;
+import rnb.myemotionforme.key.JsonKey_Details;
 import rnb.myemotionforme.key.JsonKey_User;
 
 /**
@@ -176,15 +177,17 @@ public class Menu extends FragmentActivity {
         String res = task.execute().get();
         Log.e(TAG, "getUserState : " + res);
 
-        //Json 결과 파서
-        if (Json.StatusJsonParse(res) == true) {
-            Log.e(TAG, "이미 감정이 존재.");
-            UserCheck = true;
 
-        } else {
+        if(Json.MenuJsonParse(res) == false)
+        {
             Log.e(TAG, "오늘 감정을 입력하지 않음.");
             UserCheck = false;
         }
+        else{
+            Log.e(TAG, "이미 감정이 존재.");
+            UserCheck = true;
+            Log.e(TAG, "dno: "+JsonKey_Details.dno+"  eno : "+JsonKey_Details.eno);
+          //  Toast.makeText(getApplicationContext(), "오늘의 감정은?" + MyEmotion.emotion[JsonKey_Details.dno] + " 입니다.", Toast.LENGTH_LONG).show();
+        }
     }
-
 }

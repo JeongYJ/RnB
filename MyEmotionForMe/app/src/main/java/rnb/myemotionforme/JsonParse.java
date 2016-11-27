@@ -9,7 +9,7 @@ import rnb.myemotionforme.key.JsonKey_User;
 
 
 public class JsonParse {
-
+    public static final String TAG = "JSNOPARSE";
     public JsonParse(){}
 
     JSONObject json = null;
@@ -32,6 +32,45 @@ public class JsonParse {
     }
 
 
+    public boolean MyStoryWriteJsonParse(String data){
+        boolean status = false;
+        if(data==null)
+            return false;
+        try {
+            JSONObject jsonRootObject = new JSONObject(data);
+            status =jsonRootObject.optBoolean("UserCheck");
+            int uno = jsonRootObject.optInt("uno");
+            int rno = jsonRootObject.optInt("rno");
+            return status;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+
+
+
+
+    public boolean MenuJsonParse(String data){
+        boolean status = false;
+        if(data==null)
+            return false;
+        try {
+            JSONObject  jsonRootObject = new JSONObject(data);
+            status =jsonRootObject.optBoolean("UserCheck");
+            JsonKey_Details.dno = jsonRootObject.optInt("rdno");
+            JsonKey_Details.eno = jsonRootObject.optInt("reno");
+            JsonKey_User.uno = jsonRootObject.optInt("runo");
+            JsonKey_User.rno = jsonRootObject.optInt("rno");
+            return status;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+
     public boolean UserCheckJsonParse(String data){
         boolean status = false;
         if(data==null)
@@ -39,6 +78,7 @@ public class JsonParse {
         try {
             JSONObject  jsonRootObject = new JSONObject(data);
             status =jsonRootObject.optBoolean("UserCheck");
+
             return status;
         } catch (JSONException e) {
             e.printStackTrace();

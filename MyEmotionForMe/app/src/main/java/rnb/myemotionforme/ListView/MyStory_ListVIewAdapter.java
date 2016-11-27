@@ -42,12 +42,13 @@ public class MyStory_ListVIewAdapter extends BaseAdapter {
         return position;
     }
 
-    public void addItem(Drawable icon, String mTitle, String mDate){
+    public void addItem(Drawable icon, String mTitle, String mDate, String mEmotion){
         ListData addInfo = null;
         addInfo = new ListData();
         addInfo.mIcon = icon;
         addInfo.mTitle = mTitle;
         addInfo.mDate = mDate;
+        addInfo.mEmotion = mEmotion;
 
         mListData.add(addInfo);
     }
@@ -78,6 +79,7 @@ public class MyStory_ListVIewAdapter extends BaseAdapter {
             holder.mIcon = (ImageView) convertView.findViewById(R.id.mystory_mImage);
             holder.mText = (TextView) convertView.findViewById(R.id.mystory_mText);
             holder.mDate = (TextView) convertView.findViewById(R.id.mystory_mDate);
+            holder.mEmotion = (TextView)convertView.findViewById(R.id.mystory_mEmotion);
 
             convertView.setTag(holder);
         }else{
@@ -95,6 +97,7 @@ public class MyStory_ListVIewAdapter extends BaseAdapter {
 
         holder.mText.setText(mData.mTitle);
         holder.mDate.setText(mData.mDate);
+        holder.mEmotion.setText(mData.mEmotion);
 
         return convertView;
     }

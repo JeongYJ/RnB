@@ -18,6 +18,7 @@ import rnb.myemotionforme.HttpTask;
 import rnb.myemotionforme.JsonParse;
 import rnb.myemotionforme.R;
 import rnb.myemotionforme.SocketUtil;
+import rnb.myemotionforme.key.JsonKey_Details;
 import rnb.myemotionforme.key.JsonKey_User;
 
 /**
@@ -25,6 +26,8 @@ import rnb.myemotionforme.key.JsonKey_User;
  */
 public class MyMusic extends ActionBarActivity {
 
+    TextView music_emotion_df;
+    TextView music_emotion;
     TextView tv_musicName;
     ListView music_list;
     MyMusic_ListVIewAdapter adapter;
@@ -35,6 +38,8 @@ public class MyMusic extends ActionBarActivity {
         setContentView(R.layout.activity_mymusic);
         getSupportActionBar().setTitle("MyMusic");
         tv_musicName = (TextView) findViewById(R.id.tv_musicName);
+        music_emotion_df = (TextView)findViewById(R.id.tx_todayemotion_df_music);
+        music_emotion = (TextView)findViewById(R.id.tx_todayemotion_music);
         music_list = (ListView) findViewById(R.id.lv_musicList);
         adapter = new MyMusic_ListVIewAdapter(this);
         music_list.setAdapter(adapter);
@@ -43,6 +48,8 @@ public class MyMusic extends ActionBarActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        music_emotion.setText(MyEmotion.emotion[JsonKey_Details.dno]);
     }
 
 

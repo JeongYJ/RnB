@@ -42,12 +42,11 @@
             />
         <activity android:name=".Page.MyStory_MyStoryWrite" />
 
-     <!--
+
         <activity android:name=".Page.MyStory_WhosStoryChoose" />
 
-        -->
 
-        <activity android:name=".Page.MyStory_WhosStoryChoose_Backup" />
+     <!--   <activity android:name=".Page.MyStory_WhosStoryChoose_Backup" /> -->
 
         <activity android:name=".Page.MyEmotion_chart"/>
         <activity android:name=".Page.WhosStory"/>

@@ -18,6 +18,8 @@ public class ListData {
     // 날짜
     public String mDate;
 
+    public String mEmotion;
+
     /**
      * 알파벳 이름으로 정렬
      */

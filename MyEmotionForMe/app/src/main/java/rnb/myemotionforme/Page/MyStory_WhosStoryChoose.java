@@ -38,4 +38,6 @@ public class MyStory_WhosStoryChoose extends ActionBarActivity {
         finish();
     }
 
+
+
 }

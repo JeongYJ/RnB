@@ -13,6 +13,7 @@ public class JsonKey_Details {
     public static final String TAG_dblue = "dblue";
     public static final String TAG_diconpath = "diconpath";
 
+    public static int eno = -1;
     public static int dno = -1;
     public static int deno = -1;
     public static int dred = -1;

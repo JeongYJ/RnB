@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/mystory_mImage"
         android:src="@drawable/myme_icon"
         />
@@ -21,13 +21,38 @@
             android:layout_height="wrap_content"
             android:id="@+id/mystory_mText"
             android:text="txt"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
-        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mystory_mDate"
-            android:text="Date"
-           />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mystory_mDate_df"
+                android:text="날짜 : "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:id="@+id/mystory_mDate"
+                android:text="Date"
+               />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mystory_mEmotion_df"
+                android:text="감정 : "
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mystory_mEmotion"
+                android:text="Emotion"
+                />
+            </LinearLayout>
 
     </LinearLayout>
 
