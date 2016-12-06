@@ -49,6 +49,23 @@ public class JsonParse {
     }
 
 
+    public boolean MyStoryCommentsWriteJsonParse(String data){
+        boolean status = false;
+        if(data==null)
+            return false;
+        try {
+            JSONObject jsonRootObject = new JSONObject(data);
+            status =jsonRootObject.optBoolean("UserCheck");
+            int uno = jsonRootObject.optInt("uno");
+            int rno = jsonRootObject.optInt("rno");
+            return status;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+
 
 
 
@@ -123,6 +140,7 @@ public class JsonParse {
         }
     }
 
+
     public void makeJsonObject(String data) throws JSONException{
         boolean status = false;
         if(data==null) return;
@@ -137,6 +155,8 @@ public class JsonParse {
         JSONObject tmp = jsonArray.getJSONObject(idx);
         return tmp.opt(opt);
     }
+
+
     public boolean getJsonState(){
         if(json==null) return false;
         return json.optBoolean("UserCheck");

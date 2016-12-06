@@ -29,6 +29,8 @@ import rnb.myemotionforme.key.Json_myStory;
  */
 public class MyStory extends ActionBarActivity {
 
+
+
     private static final String TAG = "DEBUG";
     private ArrayAdapter<String> mSpinnerAdapter = null;
     private ListView mListView = null;
@@ -123,9 +125,11 @@ public class MyStory extends ActionBarActivity {
                 int sshow = Integer.parseInt((String) json.getJsonArrayData(i, "sshow"));
                 int sdno = Integer.parseInt((String)json.getJsonArrayData(i, "rdno"));
                 int sno = Integer.parseInt((String)json.getJsonArrayData(i,"sno"));
-                   //     MyEmotion.emotion[Integer.parseInt(dno)]
-         //       Json_myStory.rdno = (String) json.getJsonArrayData(i, "rdno");
+
+                //     MyEmotion.emotion[Integer.parseInt(dno)]
+                //Json_myStory.rdno = (String) json.getJsonArrayData(i, "rdno");
                 //String date, String title, String text, int show, int dno)
+
                 mys[i] = new Json_myStory(sdate, stitle, stext, sshow, sdno, sno);
                 mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon), mys[i].getTitle(), mys[i].getDate(), MyEmotion.emotion[mys[i].getDno()]);
             }
@@ -142,7 +146,6 @@ public class MyStory extends ActionBarActivity {
                     JsonKey_myStory.sdate = mys[position].getDate();
                     JsonKey_myStory.sdno = mys[position].getDno();
                     JsonKey_myStory.sno = mys[position].getSno();
-
                     Intent i = new Intent(MyStory.this, MyStory_ListShow.class);
                     startActivity(i);
                     finish();

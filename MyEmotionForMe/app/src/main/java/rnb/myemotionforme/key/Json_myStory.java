@@ -25,7 +25,7 @@ public class Json_myStory {
         stext = text;
         sshow = show;
         sdno = dno;
-        sno = sno;
+        sno = sno_;
     }
 
     public Json_myStory(int position)
