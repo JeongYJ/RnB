@@ -2,14 +2,14 @@ package rnb.myemotionforme.Page;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,10 +28,13 @@ public class MyRobot extends ActionBarActivity {
     PrintWriter out;
     EditText et_ip;
 
+    String my_ip="192.168.43.154";
+
     private VideoView videoView;
     private int position = 0;
     private ProgressDialog progressDialog;
     private android.widget.MediaController mediaControls;
+    private WebView mWebView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -44,10 +47,36 @@ public class MyRobot extends ActionBarActivity {
         setContentView(R.layout.activity_myrobot);
 
         et_ip = (EditText) findViewById(R.id.et_ip_myrobot);
-        et_ip.setText("192.168.0.97");
-        videoPlayer();
+
+        et_ip.setText(my_ip);
+        //videoPlayer();
+        setWebView();
+    }
+
+
+
+
+
+    public void setWebView(){
+
+        mWebView = (WebView) findViewById(R.id.webView);
+
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        //mWebView.loadUrl("http://"+et_ip.getText()+":8080");
+        mWebView.loadUrl("http://"+my_ip+":8080");
+        mWebView.setWebViewClient(new WebViewClientClass());
+        mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
     }
+
+    private class WebViewClientClass extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -57,45 +86,6 @@ public class MyRobot extends ActionBarActivity {
         super.onBackPressed();
     }
 
-    void videoPlayer(){
-        videoView = (VideoView)findViewById(R.id.videoView_myrobot);
-
-
-        if (mediaControls == null) {
-            mediaControls = new android.widget.MediaController(MyRobot.this);
-        }
-
-        // progressDialog = new ProgressDialog(myrobot.this);
-        // progressDialog.setTitle("Android Video");
-        // progressDialog.setMessage("Loading...");
-        // progressDialog.setCancelable(false);
-        // progressDialog.show();
-
-        String url = et_ip.getText().toString();
-        try {
-            Uri video = Uri.parse("rtsp://"+url+":8554/test");
-            videoView.setVideoURI(video);
-            videoView.setMediaController(mediaControls);
-        }catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }
-        videoView.requestFocus();
-
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer){
-                //  progressDialog.dismiss();
-                videoView.seekTo(position);
-                if (position == 0) {
-                    videoView.start();
-                }else{
-                    videoView.pause();
-                }
-            }
-        });
-    }
 
     void openSocket(String msg){
         SocketUtil mysocket = new SocketUtil(et_ip.getText().toString(), 5100);
@@ -140,3 +130,4 @@ public class MyRobot extends ActionBarActivity {
 
 
 }
+

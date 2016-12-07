@@ -176,7 +176,7 @@ public class MyStory extends ActionBarActivity {
     public void MyStory_AnotherStoryButtonClicked(View v) throws Exception {
 
         Toast.makeText(getApplicationContext(), "누군가의 이야기를 엿보러 갑니다.", Toast.LENGTH_LONG).show();
-        Intent i = new Intent(MyStory.this, MyStory_WhosStoryChoose.class);
+        Intent i = new Intent(MyStory.this, WhosStory.class);
         startActivity(i);
         finish();
     }

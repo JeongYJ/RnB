@@ -145,53 +145,6 @@ public class MyStory_ListShow extends ActionBarActivity {
     }
 
 
-/*
-    public void MyStory_insert_Comments() throws Exception {
-
-        JSONObject obj = new JSONObject();
-        obj.put("uemail", JsonKey_User.uemail); //
-        Log.e("uemail","uemail:" + obj.toString());
-
-        HttpTask task = new HttpTask("/RnB/myStory.php", obj.toString());
-        String res = task.execute().get(); //결과값을 받음
-
-        JsonParse json = new JsonParse();
-        json.makeJsonObject(res);
-        if(!json.getJsonState()) return;
-
-        int size = json.getJsonArraySize();
-
-
-        if (title.getBytes().length <= 0) {//빈값이 넘어올때의 처리
-            Toast.makeText(MyStory_ListShow.this, "제목을 입력하세요.", Toast.LENGTH_SHORT).show();
-        } else {
-
-            obj = new JSONObject();
-            obj.put("nsno", JsonKey_User.uno);
-            obj.put("nwho", JsonKey_User.rno);
-            obj.put("ntext", title);
-            Log.e(TAG, "json : " + obj.toString());//json 객체 확인
-
-            //서버로 보냄 파라미터 : "url"동적으로 변화되는 경로, "jsonObject"서버로 보내질 객체
-            HttpTask task = new HttpTask("/RnB/myStory_Commnets.php", obj.toString());
-            res = task.execute().get(); //결과값을 받음
-            Log.e(TAG, "myStory_insert.php result : " + res);//결과 객체 확인
-
-            if (json.MyStoryWriteJsonParse(res)) {
-                Toast.makeText(getApplicationContext(), "작성된 이야기를 저장합니다.", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(MyStory_MyStoryWrite.this, MyStory.class);
-                startActivity(i);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "이야기 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
-    }
-*/
-
-
     public void MyStory_Comments_setting() throws Exception{
 
         JSONObject obj = new JSONObject();

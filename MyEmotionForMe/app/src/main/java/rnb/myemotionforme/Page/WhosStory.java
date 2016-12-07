@@ -45,6 +45,13 @@ public class WhosStory extends ActionBarActivity {
         //[함수] 사용자 디비에서 정보 가져오기
         //만약 정보가 있다면 additem으로 리스트에 저장
 
+
+
+
+        //deno와
+
+
+
         //MyStoryList();
         WhosStoryList();
         mAdapter.notifyDataSetChanged();

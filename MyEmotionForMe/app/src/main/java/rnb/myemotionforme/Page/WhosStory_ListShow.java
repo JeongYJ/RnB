@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -11,8 +12,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
+import rnb.myemotionforme.HttpTask;
+import rnb.myemotionforme.JsonParse;
 import rnb.myemotionforme.ListView.WhosStory_Comments_ListVIewAdapter;
 import rnb.myemotionforme.R;
+import rnb.myemotionforme.key.JsonKey_User;
+import rnb.myemotionforme.key.JsonKey_myStory;
 import rnb.myemotionforme.key.Key;
 
 /**
@@ -27,6 +37,7 @@ public class WhosStory_ListShow extends ActionBarActivity {
 
     EditText et_text_whossroty_comments;
 
+    String res;
 
     private static final String TAG = "DEBUG";
     private ArrayAdapter<String> mSpinnerAdapter = null;
@@ -63,7 +74,12 @@ public class WhosStory_ListShow extends ActionBarActivity {
         //[함수] 사용자 디비에서 정보 가져오기
         //만약 정보가 있다면 additem으로 리스트에 저장
 
-        MyStoryCommentsList();
+        try {
+            MyStoryCommentsList();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         CommentsListUpdate();
     }
 
@@ -96,23 +112,46 @@ public class WhosStory_ListShow extends ActionBarActivity {
 */
 
 
-    public void MyStoryCommentsList()
-    {
-        if(Key.textData.equals("여긴 어디인가")) {
+    public void MyStoryCommentsList() throws JSONException {
+        String comment =  et_text_whossroty_comments.getText().toString();
 
-            mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                    "밤새서 많이 힘드니");
-            mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                    "응..");
-            mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                    "전기장판이 그립다");
-        }
-        else if(Key.textData.equals("치킨먹고 싶다..."))
+        if(comment.getBytes().length <= 0)
         {
-            mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                    "나도");
-            mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon),
-                    "치킨먹구싶자나");
+            Toast.makeText(getApplicationContext(), "댓글을 작성해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+            JSONObject obj = new JSONObject();
+            JsonParse json= new JsonParse();
+
+            obj.put("sno", JsonKey_myStory.sno);
+            obj.put("uno", JsonKey_User.uno);
+            obj.put("ntext", comment);
+
+            Log.e(TAG, "json : " + obj.toString());//json 객체 확인
+
+            //서버로 보냄 파라미터 : "url"동적으로 변화되는 경로, "jsonObject"서버로 보내질 객체
+            HttpTask task = new HttpTask("/RnB/myStory_Comments_insert.php", obj.toString());
+            try {
+                res = task.execute().get(); //결과값을 받음
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            Log.e(TAG, "myStory_Comments_insert.php result : " + res);//결과 객체 확인
+
+            if (json.UserCheckJsonParse(res)) {
+                mAdapter.addItem(getResources().getDrawable(R.drawable.myme_icon), comment);
+                Toast.makeText(getApplicationContext(), "댓글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "댓글 등록에 실패했습니다.", Toast.LENGTH_SHORT).show();
+            }
+
+            /*만약 댓글을 등록했다면, 댓글을 DB에 저장해야 한다*/
+
+            CommentsListUpdate();
+            et_text_whossroty_comments.setText("");
         }
 
     }
