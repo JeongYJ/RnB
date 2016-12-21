@@ -101,7 +101,7 @@ public class MyMusic extends ActionBarActivity {
     }
 
     void openSocket(String msg){
-        SocketUtil mysocket = new SocketUtil("192.168.0.97", 5100);
+        SocketUtil mysocket = new SocketUtil("192.168.43.174", 5100);
         mysocket.setmessage(msg);
         mysocket.run();
     }

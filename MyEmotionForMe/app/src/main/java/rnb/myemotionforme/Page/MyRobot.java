@@ -28,7 +28,7 @@ public class MyRobot extends ActionBarActivity {
     PrintWriter out;
     EditText et_ip;
 
-    String my_ip="192.168.43.154";
+    String my_ip="192.168.43.174";
 
     private VideoView videoView;
     private int position = 0;
